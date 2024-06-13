@@ -1,3 +1,5 @@
+import { baseURL } from "./api.config";
+
 export type Course = {
   id: string;
   title: string;
@@ -7,11 +9,11 @@ export type Course = {
 };
 
 export async function getAllCourses() {
-  const res = await fetch("http://localhost:3000/courses");
+  const res = await fetch(baseURL + "/courses");
   return (await res.json()) as Course[];
 }
 
 export async function getCourseById(id: string) {
-  const res = await fetch(`http://localhost:3000/courses/${id}`);
+  const res = await fetch(`${baseURL}/courses/${id}`);
   return (await res.json()) as Course;
 }

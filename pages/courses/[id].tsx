@@ -16,18 +16,20 @@ export default function SingleCoursePage({ course }: SingleCoursePageProps) {
 
   return (
     <div>
-      <h1>{course?.title}</h1>
+      <h1>{course.title}</h1>
     </div>
   );
 }
 
 export const getStaticPaths = (async () => {
   const courses = await getAllCourses();
-  const paths = courses.map((c) => ({
-    params: {
-      id: c.id,
-    },
-  }));
+  const paths = courses
+    .filter((_, index) => index < 3)
+    .map((c) => ({
+      params: {
+        id: c.id,
+      },
+    }));
   return {
     paths,
     fallback: "blocking",
@@ -40,6 +42,7 @@ export const getStaticProps = (async ({ params }) => {
     props: {
       course,
     },
+    revalidate: 60 * 60 * 24,
   };
 }) satisfies GetStaticProps<{
   course: Course;

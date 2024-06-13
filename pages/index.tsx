@@ -2,7 +2,6 @@ import Head from "next/head";
 import { Vazirmatn } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { getAllCourses, Course } from "@/src/api/course.api";
-import { useEffect, useState } from "react";
 import { User, getUserData } from "@/src/api/auth.api";
 import Link from "next/link";
 

@@ -1,3 +1,5 @@
+import { baseURL } from "./api.config";
+
 export type User = {
   username: string;
   first_name: string;
@@ -5,6 +7,6 @@ export type User = {
 };
 
 export async function getUserData() {
-  const res = await fetch("http://localhost:3000/user");
+  const res = await fetch(baseURL + "/user");
   return (await res.json()) as User;
 }
